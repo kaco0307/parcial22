@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer('edad'); 
             $table->String('Tipo_usuario');
-            $table->varchar('Dinero');
+            $table->String('Dinero');
             $table->rememberToken();
             $table->timestamps();
         });
