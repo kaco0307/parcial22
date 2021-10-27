@@ -24,12 +24,6 @@ class CreateUsersTable extends Migration
             $table->String('Dinero');
             $table->rememberToken();
             $table->timestamps();
-
-            $table->system();
-              uhdsjhshhsjdgjhsbjdbjhshj
-
-
-            pruebayu
         });
     }
 
