@@ -74,6 +74,6 @@ class RegisterController extends Controller
             'edad' => $data['edad'],
             'Tipo_usuario' => $data['tipouser'],
             'Dinero' => $data['dinero'],
-        ]);
+        ])->redirect()->route("home");
     }
 }

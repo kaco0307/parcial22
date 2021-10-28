@@ -43,9 +43,7 @@ class UsuariosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-         
-        
+    {   
         $v = \Validator::make($request->all(), [
 
             'name' => ['required', 'string', 'max:255'],
@@ -60,17 +58,16 @@ class UsuariosController extends Controller
         {
             return redirect()->back()->withInput()->withErrors($v->errors());
         }
-        $contrasena = Hash::make($request->input('password'));
+        
+        return User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'edad' => $request['edad'],
+            'Tipo_usuario' => $request['tipouser'],
+            'Dinero' => $request['dinero'],
+        ])->redirect()->route("usuarios.index");
 
-        $request->merge([
-            'password' => $contrasena,
-        ]);
-
-        $usuario = new User($request->input()); 
- 
-        $usuario->saveOrFail();
-        return redirect()->route("usuarios.index")->with(["mensaje" => "usuario creado",
-    ]);
     }
 
     /**
@@ -113,7 +110,7 @@ class UsuariosController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'edad' => ['required'],
-            'tipouser' => ['required'],
+
             'dinero' => ['required'],
          ]);
 

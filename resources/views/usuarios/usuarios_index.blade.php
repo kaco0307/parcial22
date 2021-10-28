@@ -19,16 +19,27 @@
                 <thead>
                     <th>nombre</th>
                     <th>correo</th>
+                    <th>edad</th>
+                    <th>Tipo de usuario</th>
+                    <th>Dinero</th>
                 </thead>
                 <tbody>
                 @if($usuarios->count())    
-                @foreach($usuarios as $usuario)
+                @foreach($usuarios as $user)
                     <tr>
-                        <td>{{$usuario->nombre}}</td>
-                        <td>{{$usuario->correo}}</td>
-                        <td><a class="btn btn-primary btn-xs" href="{{route('usuarios.edit',[$usuario])}}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->email}}</td>
+                        <td>{{$user->edad}}</td>
+                        @if(($user->Tipo_usuario) == 2)
+                        @php($tipo = "Administrador")
+                        @else
+                        @php($tipo = "Usuario")
+                        @endif
+                        <td>{{$tipo}}</td>
+                        <td>{{$user->Dinero}}</td>
+                        <td><a class="btn btn-primary btn-xs" href="{{route('usuarios.edit',[$user])}}"><span class="glyphicon glyphicon-pencil"></span></a></td>
                         <td>
-                            <form action="{{route('usuarios.destroy', [$usuario])}}" method="post">
+                            <form action="{{route('usuarios.destroy', [$user])}}" method="post">
                                 @method("delete")
                                 @csrf
                                 <button type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span><i class="fa fa-trash"></i></button>
