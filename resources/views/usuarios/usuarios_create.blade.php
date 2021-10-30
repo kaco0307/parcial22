@@ -96,7 +96,7 @@
                             <label for="dinero" class="col-md-4 col-form-label text-md-right">{{ __('dinero') }}</label>
 
                             <div class="col-md-6">
-                                <input id="dinero" type="number" class="form-control @error('dinero') is-invalid @enderror" name="dinero" value="{{ old('dinero') }}" required autocomplete="dinero">
+                                <input id="Dinero" type="number" class="form-control @error('Dinero') is-invalid @enderror" name="Dinero" value="{{ old('Dinero') }}" required autocomplete="Dinero">
 
                                 @error('dinero')
                                     <span class="invalid-feedback" role="alert">

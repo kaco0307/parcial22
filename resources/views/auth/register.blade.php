@@ -81,7 +81,7 @@
                             <div class="col-md-6">
                                 <select name= "tipouser">
                                   <option value = "02"> Administrador </option>
-                                  <option value = "03"> Cliente </option>
+                                  <option value = "03"> Usuario </option>
                                 </select>
 
                                 @error('tipo de usuario')

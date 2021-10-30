@@ -2,27 +2,43 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\bodega as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 
-class bodega extends Authenticatable
+/**
+ * Class Bodega
+ *
+ * @property $Codigo_produc
+ * @property $Nombre_Producto
+ * @property $Numero_Cajas
+ * @property $Edad_Minima
+ * @property $remember_token
+ * @property $created_at
+ * @property $updated_at
+ *
+ * @package App
+ * @mixin \Illuminate\Database\Eloquent\Builder
+ */
+class Bodega extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
-    protected $fillable = [
-        'Nombre_Producto',
-        'Codigo_produc',
-        'Numero_Cajas',
-        'Edad_Minima'
+    
+    static $rules = [
+		'Codigo_produc' => 'required|unique:bodegas',
+		'Nombre_Producto' => 'required',
+		'Numero_Cajas' => 'required',
+		'Edad_Minima' => 'required',
     ];
 
-   
+    protected $perPage = 20;
+
+    /**
+     * Attributes that should be mass-assignable.
+     *
+     * @var array
+     */
+    protected $table = "bodegas";
+    protected $primaryKey = 'Codigo_produc';
+    protected $fillable = ['Codigo_produc','Nombre_Producto','Numero_Cajas','Edad_Minima'];
+
+
+
 }

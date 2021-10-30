@@ -51,14 +51,24 @@ class UsuariosController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'edad' => ['required'],
             'tipouser' => ['required'],
-            'dinero' => ['required'],
+            'Dinero' => ['required'],
          ]);
 
         if ($v->fails())
         {
             return redirect()->back()->withInput()->withErrors($v->errors());
         }
+
+        $newPassword = Hash::make($request->password);
         
+        $request->merge([
+            'password' => $newPassword,
+        ]);
+
+        User::create($request->all());
+
+        return redirect()->route('usuarios.index')->with('success', 'Usuario creado correctamente');
+        /*
         return User::create([
             'name' => $request['name'],
             'email' => $request['email'],
@@ -67,6 +77,7 @@ class UsuariosController extends Controller
             'Tipo_usuario' => $request['tipouser'],
             'Dinero' => $request['dinero'],
         ])->redirect()->route("usuarios.index");
+        */
 
     }
 

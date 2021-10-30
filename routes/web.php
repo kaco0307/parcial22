@@ -20,9 +20,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource("bodegas", "App\Http\Controllers\BodegasController")->parameters(["bodegas"=>"bodega"]);
+Route::resource('bodegas', App\Http\Controllers\BodegaController::class);
 
 Route::resource("usuarios", "App\Http\Controllers\UsuariosController")->parameters(["usuarios"=>"usuario"]);
 

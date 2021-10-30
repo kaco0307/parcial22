@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBodegaTable extends Migration
+class Bodegas extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateBodegaTable extends Migration
      */
     public function up()
     {
-        Schema::create('bodega', function (Blueprint $table) {
-            $table->id();
+        Schema::create('bodegas', function (Blueprint $table) {
+            $table->string('Codigo_produc')->primary();
             $table->string('Nombre_Producto');
-            $table->string('Codigo_produc')->unique()->nullable();
             $table->string('Numero_Cajas');
-            $table->Interger('Edad_Minima'); 
+            $table->Integer('Edad_Minima'); 
             $table->rememberToken();
             $table->timestamps();
         });
@@ -31,6 +30,6 @@ class CreateBodegaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bodega');
+        Schema::dropIfExists('bodegas');
     }
 }
